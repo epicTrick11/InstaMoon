@@ -40,6 +40,7 @@ class DialogUtils {
         "📥 Import backup",
         "👨‍💻 Open developer mode",
         "🧹 Clear developer mode settings"
+                )
             alertDialog.setItems(options, object : DialogInterface.OnClickListener {
                 override fun onClick(dialog: DialogInterface, which: Int) {
                     when (which) {
