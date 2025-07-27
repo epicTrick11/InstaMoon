@@ -32,25 +32,6 @@ jobs:
     - name: Decode keystore
       run: |
           echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > keystore.jks
-
-    - name: Sign APK with apksigner
-      run: |
-          APK_PATH=$(find app/build/outputs/apk/release -name "*-release-unsigned.apk" | head -n 1)
-          SIGNED_APK_PATH="app/build/outputs/apk/release/app-release-signed.apk"
-
-          $ANDROID_HOME/build-tools/35.0.0/apksigner sign \
-            --ks keystore.jks \
-            --ks-key-alias "${{ secrets.KEY_ALIAS }}" \
-            --ks-pass pass:"${{ secrets.KEYSTORE_PASSWORD }}" \
-            --key-pass pass:"${{ secrets.KEY_PASSWORD }}" \
-            --out "$SIGNED_APK_PATH" \
-            "$APK_PATH"
-            
-    #- name: Upload signed APK
-    #  uses: actions/upload-artifact@v4
-    #  with:
-    #      name: Signed APK
-    #      path: app/build/outputs/apk/release/app-release-signed.apk
           
     - name: Install apktool
       run: |
@@ -62,7 +43,7 @@ jobs:
         
     - name: Decompile signed apk
       run: |
-        apktool d app/build/outputs/apk/release/app-release-signed.apk -o InstaMoon_decompiled
+        apktool d app/build/outputs/apk/release/ -name  *-release-unsigned.apk" -o InstaMoon_decompiled
         
     - name: Clean all smali* folders
       run: |
