@@ -44,10 +44,10 @@ class DialogUtils {
             alertDialog.setItems(options, object : DialogInterface.OnClickListener {
                 override fun onClick(dialog: DialogInterface, which: Int) {
                     when (which) {
-                         0 -> FileUtils.exportJsonBackup(ctx)
-            1 -> showImportBackupDialog(ctx, instagramMainActivity)
-            2 -> DeveloperUtils.openDeveloperMode(ctx, instagramMainActivity)
-            3 -> showDeveloperModeResetConfirmation(ctx)
+                         0 -> showImportBackupDialog(ctx, instagramMainActivity)
+                         1 -> BackupUtils.exportBackup(ctx)
+                         2 -> DeveloperUtils.openDeveloperMode(ctx, instagramMainActivity)
+                         3 -> showClearDeveloperModeSettingsDialog(ctx)
                     }
                 }
             })
