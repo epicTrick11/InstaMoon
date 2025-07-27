@@ -35,18 +35,18 @@ class DialogUtils {
 
         fun showInstaMoonOptionsDialog(ctx: Context, instagramMainActivity: InstagramMainActivity) {
             val alertDialog = buildAlertDialog(ctx, "INSTAMOON \uD83C\uDF19", null, null)
-            val options = arrayOf("👻 Ghost mode", "⚙️ Extra options", "👨‍💻 Open developer mode", "📤 Export backup", "📥 Import backup", "🧹 Clear developer mode settings", "💾 Save file (id_name_mapping.json)", "ℹ️ About the App")
+            val options = arrayOf(
+        "📤 Export backup",
+        "📥 Import backup",
+        "👨‍💻 Open developer mode",
+        "🧹 Clear developer mode settings"
             alertDialog.setItems(options, object : DialogInterface.OnClickListener {
                 override fun onClick(dialog: DialogInterface, which: Int) {
                     when (which) {
-                        0 -> showGhostModeDialog(ctx)
-                        1 -> showExtraOptionsDialog(ctx)
-                        2 -> DeveloperUtils.openDeveloperMode(ctx, instagramMainActivity)
-                        3 -> BackupUtils.exportBackup(ctx)
-                        4 -> showImportBackupDialog(ctx, instagramMainActivity)
-                        5 -> showClearDeveloperModeSettingsDialog(ctx)
-                        6 -> FileUtils.saveFileIdNameMapping(ctx)
-                        7 -> showAboutAppDialogDialog(ctx)
+                         0 -> FileUtils.exportJsonBackup(ctx)
+            1 -> showImportBackupDialog(ctx, instagramMainActivity)
+            2 -> DeveloperUtils.openDeveloperMode(ctx, instagramMainActivity)
+            3 -> showDeveloperModeResetConfirmation(ctx)
                     }
                 }
             })
